@@ -1,6 +1,6 @@
 # Coreference Resolution on Hungarian Data with BERT
 
-This repository contains the source code of a corefernce resolver trained on Hungarian data.
+This repository contains the source code of a coreference resolver trained on Hungarian data.
 
 ## Installation
 
@@ -56,6 +56,10 @@ Fine-tuned contextualized embeddings can be used as the inputs of a clustering a
 Clustering outputs can be evaluated against gold standard labels with the `src/bert_coref/clustering/evaluate_clustering.py` script.
 
 You can use the `src/bert_coref/clustering/plot_coref.py` script to visualize the clustering input.
+
+## Licence
+
+GNU General Public License v3.0
 
 ## Download
 
