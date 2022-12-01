@@ -15,9 +15,11 @@ labels (an array where the ith label corresponds to the ith label).
 """
 
 from argparse import Namespace
-from typing import Sequence, Iterable, Generator, List, Union, Dict
+from collections import Counter
 from itertools import chain
 from dataclasses import fields
+from copy import deepcopy
+from typing import Sequence, Iterable, Generator, List, Union, Dict
 
 from jsonlines import Writer as JsonlWriter
 
@@ -68,23 +70,23 @@ def create_triplets(
     """
     assert ignore_label not in {0, 1, 2}, f"`ignore_label` cannot be 0, 1 or 2."
     label_anchor, label_pos, label_neg = 2, 1, 0
+    label_counter = Counter(token.koref for token in tokens)
     for i, anchor_label in enumerate(anchor.koref for anchor in tokens):
-        if anchor_label == ignore_label:
+        if anchor_label == ignore_label or label_counter[anchor_label] == 1:
             continue
         triplet_data = []
         for j, token in enumerate(tokens):
-            token = token.to_dict()
-            wordform = token.pop("form")
-            label = token.pop("koref")
+            label = token.koref
+            new_token = deepcopy(token)
             if label == ignore_label:
-                new_label = label
+                pass
             elif label != anchor_label:
-                new_label = label_neg
+                new_token.koref = label_neg
             elif j == i:
-                new_label = label_anchor
+                new_token.koref = label_anchor
             else:
-                new_label = label_pos
-            triplet_data.append(XtsvToken(wordform, new_label, **token))
+                new_token.koref = label_pos
+            triplet_data.append(new_token)
         yield triplet_data
 
 

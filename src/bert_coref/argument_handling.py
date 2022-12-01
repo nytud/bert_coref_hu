@@ -80,6 +80,8 @@ def get_deepl_parser(description: str) -> ArgumentParser:
     parser.add_argument("--shuffling-buffer-size", dest="shuffling_buffer_size",
                         type=check_positive_int, help="Buffer size for data "
                                                       "shuffling. Optional.")
+    parser.add_argument("--seed", type=check_positive_int, default=42,
+                        help="The random seed value. Defaults to `42`.")
     parser.add_argument("--project", help="WandB project name. Optional.")
     parser.add_argument("--run-name", dest="run_name",
                         help="WandB run name. Optional.")
