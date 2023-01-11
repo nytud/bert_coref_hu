@@ -1,0 +1,63 @@
+program: src/bert_coref/triplet_train.py
+method: bayes
+name: bert_coref_hp_tuning
+description: Fine-tune BERT for coreference resolution
+metric:
+  name: val_loss
+  goal: minimize
+parameters:
+  learning-rate:
+    min: 0.000001
+    max: 0.0001
+  decay-alpha:
+    min: 0.0
+    max: 0.9
+  beta1:
+    min: 0.85
+    max: 0.95
+  beta2:
+    min: 0.95
+    max: 0.999
+  weight-decay:
+    min: 0.0
+    max: 0.0001
+  batch-size:
+    distribution: constant
+    value: 32
+  epochs:
+    distribution: constant
+    value: 2
+  seed:
+    distribution: categorical
+    values:
+    - 1
+    - 32
+    - 42
+    - 57
+    - 100
+  margin:
+    distribution: constant
+    value: 0.7
+  log-update-freq:
+    distribution: constant
+    value: 40
+  checkpoint-dir:
+    distribution: constant
+    value: /data/targets/hp_tuning
+  model:
+    distribution: constant
+    value: SZTAKI-HLT/hubert-base-cc 
+  tokenizer:
+    distribution: constant
+    value: SZTAKI-HLT/hubert-base-cc 
+early_terminate:
+  type: hyperband
+  min_iter: 5
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - /data/targets/train.jsonl
+  - /data/targets/dev.jsonl
+  - ${args}
+project: bert_coref

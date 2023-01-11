@@ -5,7 +5,9 @@
 
 A token will be labelled non-coreferent iff one of the following conditions hold:
     1. Its POS tag is an element of a stop list;
-    2. It was originally labelled as non-coreferent and it depends on a coreferent token.
+    2. It was originally labelled as non-coreferent and it depends on a coreferent token. 
+
+Condition 2 applies only if the `--exclude-descendants` flag is specified. It is ignored otherwise.
 
 Tokens that do not fulfill the requirements above but were originally labelled as
 non-coreferent will be considered elements of single-token coreference clusters and
@@ -13,6 +15,7 @@ cluster IDs will be assigned to them.
 
 It is expected that the input is in `xtsv` format, with blank lines separating
 sentences and double blank lines separating documents.
+
 """
 
 from argparse import Namespace, FileType

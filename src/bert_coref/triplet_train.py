@@ -284,8 +284,11 @@ def run_training(
 
 def main() -> None:
     """Main function."""
-    # Prepare the dataset splits
     args = get_training_args()
+    wandb_setup(vars(args))
+    tf.random.set_seed(args.seed)  # Set global TensorFlow seed
+
+    # Prepare the dataset splits
     data_processing_kwargs = {
         "batch_size": args.batch_size,
         "shuffling_buffer_size": args.shuffling_buffer_size,
@@ -301,7 +304,6 @@ def main() -> None:
     train_dataset = train_dataset.prefetch(2)
 
     # Train the model
-    wandb_setup(vars(args))
     _ = run_training(
         train_dataset=train_dataset,
         val_dataset=val_dataset,
