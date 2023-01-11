@@ -57,10 +57,37 @@ Clustering outputs can be evaluated against gold standard labels with the `src/b
 
 You can use the `src/bert_coref/clustering/plot_coref.py` script to visualize the clustering input.
 
+## Download
+
+Find our model [here](https://nlp.nytud.hu/bertcorefhu/).
+
+## Optimal hyperparameters
+
+* initial learning rate: 0.0000137873
+* minimal learning rate: 0.000003778
+* AdamW weight decay: 0.000085443
+* batch size: 32
+* epochs: 2
+* margin: 0.7
+
+## Citation
+
+If you use our tool, please cite our paper:
+
+Vadász Noémi, Nyéki Bence (2022): Koreferenciafeloldás magyar szövegeken BERT-tel. XIX. Magyar Számítógépes Nyelvészeti Konferencia (MSZNY 2023). Megjelenés alatt.
+
+```
+@inproceedings{bert_coref_hu,
+    author = {Vadász, Noémi and Nyéki, Bence},
+    title = {Koreferenciafeloldás magyar szövegeken {BERT}-tel},
+    booktitle = {{XIX}. {M}agyar {S}zámítógépes {N}yelvészeti {K}onferencia ({MSZNY} 2023)},
+    pages = {In press},
+    publisher = {Szegedi Tudományegyetem, TTIK, Informatikai Intézet},
+    address = {Szeged},
+    year = {2023}
+}
+```
+
 ## Licence
 
 GNU General Public License v3.0
-
-## Download
-
-Due to anonymity requirements, we can provide a download link to the weights of our fine-tuned BERT model only after receiving the reviews of our paper.
