@@ -81,7 +81,8 @@ Vadász Noémi, Nyéki Bence (2022): Koreferenciafeloldás magyar szövegeken BE
     author = {Vadász, Noémi and Nyéki, Bence},
     title = {Koreferenciafeloldás magyar szövegeken {BERT}-tel},
     booktitle = {{XIX}. {M}agyar {S}zámítógépes {N}yelvészeti {K}onferencia ({MSZNY} 2023)},
-    pages = {In press},
+    editor = {Berend, Gábor and Gosztolya, Gábor and Vincze, Veronika},
+    pages = {119--131},
     publisher = {Szegedi Tudományegyetem, TTIK, Informatikai Intézet},
     address = {Szeged},
     year = {2023}
